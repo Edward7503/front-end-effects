@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 500px;
+            height: 200px;
+            margin: 100px auto;
+        }
+        #content{
+
+            text-align: center;
+            line-height: 200px;
+            background-color: black;
+            font-size: 30px;
+            color: palevioletred;
+        }
+        .btn-left{
+           position: relative;
+            top: -60px;
+            left: 220px;
+            height: 50px;
+            width: 50px;
+            background: blue;
+            color: wheat;
+            border-radius: 50px;
+            outline: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="content">奔跑吧，皮皮虾</div>
+    <input type="button" value="START" class="btn-left"/>
+</div>
+<script>
+    var Test=document.getElementById("content");
+    var Ipt=document.getElementsByTagName("input")[0];
+    var a=["奔跑吧，皮皮虾","恭喜您获得500万","恭喜你获得刘亦菲签名照一个","恭喜你获得iphone8一箱","恭喜你获得一等奖",
+        "你长得那么帅你下次一定会中奖的", "很遗憾下次再来吧","精美老人机一台","再来一次","undefined",
+        "欧巴你运气爆表了去买彩票吧","给你一个么么哒"];
+
+    var onOff=true;
+    var time;
+    Ipt.onclick=function(){
+        if(onOff==true){
+            Ipt.value="OVER";
+            clearInterval(time);
+            time=setInterval(fn,100);
+            function fn(){
+               var n=Math.ceil(Math.random()*12);
+                Test.innerHTML=a[n];
+            }
+        }else{
+            Ipt.value="START";
+            clearInterval(time)
+        }
+        onOff=!onOff
+    }
+
+
+</script>
+</body>
+</html>

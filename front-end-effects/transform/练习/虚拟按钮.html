@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .ball {
+            width: 100%;
+            height: 637px;
+            background: green;
+            overflow: hidden;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            float: left;
+            border: 1px solid white;
+            border-radius:200px;
+            text-align: center;
+            margin: 100px 100px;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            margin: 25px;
+            -webkit-transition: all 1s ease-in-out ;
+        }
+        img:hover{
+            -webkit-transform: rotate(720deg) scale(2);
+        }
+        span{
+            float: left;
+            width: 150px;
+            height: 50px;
+            margin: 0 100px;
+            border: 3px solid white;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            position: relative;
+            background: url("./img/bg.png") 90px 15px no-repeat;
+            -webkit-transition: all 0.5s linear;
+        }
+        span:hover{
+            background: url("./img/bg.png") 120px 15px no-repeat;
+        }
+        em{
+            position: absolute;
+            background: red;
+            -webkit-transition: all 0.5s ease-out;
+        }
+        span em:first-child{
+            top: -3px;
+            right: -150px;
+            height: 0;
+            width: 156px;
+        }
+        span em:nth-child(2){
+            top: 50px;
+            right:250px;
+            height: 0;
+            width: 156px;
+        }
+        span em:nth-child(3){
+            top: -150px;
+            left: -3px;
+            height: 56px;
+            width: 0;
+        }
+        span em:nth-child(4){
+            top: 200px;
+            right: -3px;
+            height: 56px;
+            width: 0;
+            background: red;
+        }
+        span:hover em:first-child{
+            height: 3px;
+            right: -3px;
+        }
+        span:hover em:nth-child(2){
+            height: 3px;
+            right: -3px;
+        }
+        span:hover em:nth-child(3){
+            width: 3px;
+            top: -3px;
+        }
+        span:hover em:nth-child(4){
+            width: 3px;
+            top: -3px;
+        }
+    </style>
+</head>
+<body>
+<div class="ball">
+    <div class="box"><img src="./img/icon1.png" alt=""/></div>
+    <div class="box"><img src="./img/icon2.png" alt=""/></div>
+    <div class="box"><img src="./img/icon3.png" alt=""/></div>
+    <span>fly
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+    </span>
+    <span>fly
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+    </span>
+    <span>fly
+        <em></em>
+        <em></em>
+        <em></em>
+        <em></em>
+    </span>
+</div>
+
+</body>
+</html>

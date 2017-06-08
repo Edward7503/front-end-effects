@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        div{
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            background:red;
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    var box=document.getElementsByTagName("div");
+    document.onmousemove=function(){
+        var event=event||window.event;
+        var i=0;
+        clearInterval(time);
+        var time=setInterval(fn,100);
+        function fn(){
+            box[i].style.left=event.clientX+"px";
+            box[i].style.top=event.clientY+"px";
+            i++;
+            if(i==box.length){
+                clearInterval(time)
+            }
+            function color(){
+                return Math.ceil(Math.random()*255);
+            }
+           box[i].style.background='rgb('+color()+','+color()+','+color()+')'
+        }
+    }
+</script>
+</body>
+</html>

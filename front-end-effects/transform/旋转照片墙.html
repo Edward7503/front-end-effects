@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            -webkit-transform: perspective(600px);
+        }
+        ul{
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+           border: 1px solid red;
+            -webkit-animation: move 10s linear  infinite;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform-origin:100px 100px
+        }
+        li{
+            position: absolute;
+            left: 0;
+            top: 0;
+            list-style: none;
+            width: 200px;
+            height: 200px;
+        }
+        img{
+            width: 150px;
+            height: 200px;
+        }
+        @-webkit-keyframes move {
+            0%{
+                -webkit-transform: rotateX(60deg) rotateY(0deg)
+            }
+            50%{
+                -webkit-transform:rotateX(60deg) rotateY(180deg)
+            }
+            100%{
+                -webkit-transform:rotateX(60deg) rotateY(360deg)
+            }
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="box1"><img src="./images/1.png" alt=""/></li>
+    <li class="box2"><img src="./images/2.png" alt=""/></li>
+    <li class="box3"><img src="./images/3.png" alt=""/></li>
+    <li class="box4"><img src="./images/4.png" alt=""/></li>
+    <li class="box5"><img src="./images/5.png" alt=""/></li>
+    <li class="box6"><img src="./images/6.png" alt=""/></li>
+    <li class="box7"><img src="./images/7.png" alt=""/></li>
+    <li class="box8"><img src="./images/8.png" alt=""/></li>
+    <li class="box9"><img src="./images/9.png" alt=""/></li>
+    <li class="box10"><img src="./images/10.png" alt=""/></li>
+    <li class="box11"><img src="./images/11.png" alt=""/></li>
+    <li class="box12"><img src="./images/12.png" alt=""/></li>
+</ul>
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+    $("img").each(function(i){
+        $(this).css({
+            "transform":"rotateY("+i*30+"deg) translateZ(300px)"
+        })
+    })
+</script>
+</body>
+</html>

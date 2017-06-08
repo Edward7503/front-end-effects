@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 1000px;
+            height: 500px;
+            margin: 30px auto;
+        }
+        .left{
+            float: left;
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+        p{
+            background: whitesmoke;
+            width: 80px;
+            height: 80px;
+            display: none;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .left img{
+            width: 400px;
+            height: 400px;
+            vertical-align: bottom;
+        }
+        .right{
+            float: right;
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            display: none;
+
+        }
+        .right img {
+            width: 2000px;
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="left">
+        <img src="33.png" alt=""/>
+        <p></p>
+    </div>
+    <div class="right">
+        <img src="33.png" alt=""/>
+    </div>
+</div>
+<script>
+    var box1=document.getElementById("box").children;
+    box1[0].onmouseover=function(){
+        box1[0].children[1].style.display="block";
+        box1[1].style.display="block";
+    };
+    box1[0].children[1].onmousedown=function(){
+            var event=event||window.event;
+            var x=event.clientX-box1[0].children[1].offsetLeft;
+            var y=event.clientY-box1[0].children[1].offsetTop;
+            document.onmousemove=function(){
+                var event=event||window.event;
+                var lefts=event.clientX-x;
+                var tops=event.clientY-y;
+                var num=400/80;
+                var width=box1[0].clientWidth-box1[0].children[1].offsetWidth;
+                var height=box1[0].clientHeight-box1[0].children[1].offsetHeight;
+                if(lefts>=width){
+                    lefts=width
+                }
+                if(lefts<=0){
+                    lefts=0
+                }
+                if(tops>=height){
+                    tops=height
+                }
+                if(tops<=0){
+                    tops=0
+                }
+                box1[0].children[1].style.left=lefts+'px';
+                box1[0].children[1].style.top=tops+'px';
+                box1[1].scrollLeft=lefts*num;
+                box1[1].scrollTop=tops*num
+            }
+    };
+    document.onmouseup=function(){
+            document.onmousemove=null
+    };
+    box1[0].onmouseout=function(){
+        box1[0].children[1].style.display="none";
+        box1[1].style.display="none";
+    }
+</script>
+</body>
+</html>

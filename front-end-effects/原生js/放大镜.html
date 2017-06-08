@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 1000px;
+            margin: 20px auto;
+        }
+        #top{
+            width: 1000px;
+            height: 300px;
+        }
+        #left{
+            float: left;
+            width: 400px;
+            height: 300px;
+            margin-right: 200px;
+            position: relative;
+        }
+        #right{
+            float:left;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            display: none;
+        }
+        #left img{
+            width: 400px;
+            height: 300px;
+            vertical-align: bottom;
+        }
+        #right img{
+            width: 2000px;
+            height: 1500px;
+
+        }
+        #footer{
+            width: 400px;
+            height: 150px;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+        #inner{
+            width: 6400px;
+            height: 150px;
+        }
+        #inner img{
+            float: left;
+            width: 200px;
+            height: 150px;
+        }
+        span{
+            width: 80px;
+            height: 60px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            background: whitesmoke;
+            opacity: 0.5;
+
+        }
+        #ball{
+            /*margin-top: -100px;*/
+            position:absolute;
+            top:80px;
+            left: 0;
+            height: 20px;
+            width: 400px;
+            display: none;
+        }
+        .left{
+            float: left;
+            background:gray;
+            width: 50px;
+            height:20px;
+            text-align: center;
+        }
+        .right{
+            float: right;
+            background: gray;
+            width: 50px;
+            height:20px;
+            text-align: center;
+        }
+        #box1{
+            width: 400px;
+            display: block;
+            position:absolute;
+            top:120px;
+            left: 0;
+            text-align: center;
+            opacity: 0.5;
+        }
+        #foot{
+            width: 400px;
+            height: 150px;
+            position: relative;
+        }
+        .btn{
+            width: 40px;
+            height: 17px;
+        }
+        .btn1{
+            height: 21px;
+            position: relative;
+            margin-left: -5px;
+            top: 1px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="top">
+        <div id="left">
+            <img src="img/1.png" alt=""/>
+            <span></span>
+        </div>
+        <div id="right">
+            <img src="img/1.png" alt=""/>
+        </div>
+    </div>
+    <div id="foot">
+        <div id="footer">
+            <div id="inner"></div>
+        </div>
+        <div id="ball">
+            <em class="left">左</em>
+            <em class="right">右</em>
+        </div>
+        <div id="box1">
+            <input type="text" class="btn"/>
+            <input type="button" value="确定" class="btn1"/>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var box=document.getElementById("box");
+    var left=document.getElementById("left");
+    var rights=document.getElementById("right");
+    var spn=left.children[1];
+    var foot=document.getElementById("footer");
+    var inn=foot.children[0];
+
+    left.onmouseover=function(){
+        spn.style.display="block";
+        rights.style.display="block"
+    };
+    left.onmouseout=function(){
+        spn.style.display="none";
+        rights.style.display="none";
+    };
+    spn.onmousedown=function(){
+        var event=event||window.event;
+        var x=event.clientX-spn.offsetLeft;
+        var y=event.clientY-spn.offsetTop;
+        document.onmousemove=function(){
+            var event=event||window.event;
+            var lefts=event.clientX-x;
+            var tops=event.clientY-y;
+            var bodyw=left.clientWidth-spn.offsetWidth;
+            var bodyh=left.clientHeight-spn.offsetHeight;
+            var num=2000/400;
+            if(lefts>=bodyw){
+                lefts=bodyw
+            }
+            if(lefts<=0){
+                lefts=0
+            }
+            if(tops>=bodyh){
+                tops=bodyh
+            }
+            if(tops<=0){
+                tops=0
+            }
+            spn.style.left=lefts+"px";
+            spn.style.top=tops+"px";
+            rights.scrollLeft=num*lefts;
+            rights.scrollTop=tops*num;
+        }
+    };
+    document.onmouseup=function(){
+        document.onmousemove=null
+    };
+    for(var i=1;i<33;i++){
+       inn.innerHTML+='<img src="img/'+i+'.png" alt=""/>';
+    }
+    var img=inn.children;
+    for(var i= 0;i<img.length;i++){
+        img[i].onclick=function(){
+            for(var i=0;i<img.length;i++){
+                if(this==img[i]){
+                    left.children[0].src=this.src;
+                    rights.children[0].src=this.src;
+                }
+            }
+        }
+    }
+    var time1,time2;
+    var flag=0;
+    var num=0;
+    function move(start,end ){
+        var step=0;
+        var maxstep=100;
+        var steep=(end-start)/maxstep;
+        clearInterval(time1);
+        time1=setInterval(test,1);
+        function test(){
+            start=start+steep;
+            foot.scrollLeft=start;
+            step++;
+            if(step==maxstep){
+                clearInterval(time1)
+            }
+        }
+    }
+    function main(){
+        clearInterval(time2);
+        time2=setInterval(fn,500);
+        function fn(){
+            if(flag==1){
+                num--;
+                if(num<0){
+                    num=img.length-1
+                }
+                move(foot.scrollLeft,200*num)
+            }
+            else if(flag==0){
+                num++;
+                if(num==img.length){
+                    num=0
+                }
+                move(foot.scrollLeft,200*num)
+            }
+        }
+    }
+    var ball=document.getElementById("ball");
+    var btn=ball.children;
+    btn[0].onclick=function(){
+        flag=1;
+        main()
+    };
+    btn[1].onclick=function(){
+        flag=0;
+        main()
+    };
+    document.getElementById("foot").onmouseover=function(){
+        ball.style.display="block";
+        main()
+    };
+    document.getElementById("foot").onmouseout=function(){
+        ball.style.display="none";
+      clearInterval(time2)
+    }
+    var inpt=document.getElementsByTagName("input");
+    var a=inpt[0].value;
+    inpt[1].onclick=function(){
+        clearInterval(time2);
+        if(isNaN(a)){
+            alert("不是一个数字")
+        }else{
+            if(a<31){
+                move(ball.scrollLeft,a*200)
+            }
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

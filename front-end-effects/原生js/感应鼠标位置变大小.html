@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #img{
+            width: 400px;
+            height: 400px;
+
+        }
+        #ball{
+            width: 100%;
+
+            text-align: center;
+            position: absolute;
+            bottom:0
+        }
+        #ball img{
+            width: 100px ;
+
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div style="width: 400px;height: 400px;margin: 30px auto">
+        <img src="img/1.png"  id="img"/>
+    </div>
+    <div id="ball">
+        <img src="img/1.png" alt=""/>
+        <img src="img/2.png" alt=""/>
+        <img src="img/3.png" alt=""/>
+        <img src="img/4.png" alt=""/>
+        <img src="img/5.png" alt=""/>
+    </div>
+</div>
+<script>
+    window.onload=function(){
+        var Img=document.getElementById("img");
+        var ball=document.getElementById("ball");
+        var oImg=ball.children;
+        document.onmousemove=function(){
+            var event=event||window.event;
+            for(var i=0;i<oImg.length;i++){
+                var x=oImg[i].offsetLeft+oImg[i].offsetWidth/2;
+                var y=oImg[i].offsetHeight/2+oImg[i].offsetTop+ball.offsetTop;
+                var a=event.clientX-x;
+                var b=event.clientY-y;
+//                console.log(a);
+//                console.log(b);
+                var c=Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+                var s = 1-c/300;
+                if(s<0.5){
+                    s=0.5
+                }
+                oImg[i].style.width=s*200+"px";
+                oImg[i].style.height=s*200+"px";
+                var num;
+                oImg[i].onclick=function(){
+                    for(var i=0;i<oImg.length;i++){
+                        if(this==oImg[i]){
+                            num=i;
+                            Img.src=oImg[num].src;
+                            console.log(this)
+                        }
+                    }
+                }
+            }
+        }
+
+    };
+
+
+</script>
+</body>
+</html>

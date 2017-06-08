@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 500px;
+            height: 500px;
+            border:1px solid red;
+            position: relative;
+        }
+        #ball{
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="ball"></div>
+</div>
+<button>回放</button>
+<script>
+    var box=document.getElementById("box"),
+            ball=document.getElementById("ball"),
+            btn=document.getElementsByTagName("button"),
+            arrX=[],arrY=[], x, y,w,h;
+    ball.onmousedown=function(){
+        w=box.clientWidth-ball.offsetWidth;
+        h=box.clientHeight-ball.offsetHeight;
+        document.onmousemove=function(e){
+            x= e.clientX-box.offsetLeft-ball.offsetWidth/2;
+            y= e.clientY-box.offsetHeight-ball.offsetHeight/2
+        }
+    }
+
+</script>
+</body>
+</html>

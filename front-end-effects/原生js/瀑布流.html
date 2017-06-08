@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 1000px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        ul{
+            width: 200px;
+            margin-left: 20px;
+            float: left;
+        }
+        li{
+            width: 200px;
+            margin-top: 10px;
+            list-style: none;
+        }
+        img{
+            width: 200px;
+            vertical-align: bottom;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+
+</div>
+<script>
+    var oul=document.getElementsByTagName("div")[0].children;
+    function fn(){
+        var uli=document.createElement("li");
+        var x=Math.ceil(Math.random()*35);
+        uli.innerHTML='<img src="img/'+x+'.png" alt=""/>';
+        var oul1=oul[0].offsetHeight;
+        var oul2=oul[1].offsetHeight;
+        var oul3=oul[2].offsetHeight;
+        var oul4=oul[3].offsetHeight;
+        var min=Math.min(oul1,oul2,oul3,oul4);
+       for(var i=0;i<oul.length;i++){
+            if(oul[i].offsetHeight==min){
+                oul[i].appendChild(uli)
+            }
+        }
+    }
+    for(var i=0;i<12;i++){
+        fn()
+    }
+    window.onscroll=function(){
+        var bodyh=document.documentElement.clientHeight;
+        var docuh=document.documentElement.offsetHeight;
+        var scrt=document.body.scrollTop||document.documentElement.scrollTop;
+        if(docuh-bodyh-scrt<200){
+            fn()
+        }
+    }
+
+</script>
+
+</body>
+</html>

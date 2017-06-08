@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <span>00</span>:
+    <span>00</span>:
+    <span>00</span>:
+    <span>000</span>
+</div>
+<input type="button" value="计时"/>
+<input type="button" value="计次"/>
+<ul></ul>
+<script>
+    var oul=document.getElementsByTagName("ul")[0];
+    var spn=document.getElementsByTagName("span");
+    var inpt=document.getElementsByTagName("input");
+    var time;
+    var onOff = true;
+    var A=0, B=0, C=0, D=0,S=0;
+        inpt[0].onclick=function(){
+           var s=0;
+            if(onOff){
+                clearInterval(time);
+                time=setInterval(fn,10);
+                function fn(){
+                    s++;
+                    var num=s+S;
+                    var a=toTwo(num%100);
+                    var b=toTwo(parseInt(num/100)%60);
+                    var c=toTwo(parseInt(num/(100*60))%60);
+                    var d=toTwo(parseInt(num/(100*60*60))%24);
+                    var arr = [d,c,b,a];
+                    for(var i = 0;i<arr.length;i++){
+                        spn[i].innerHTML=arr[i];
+                    }
+                    inpt[1].value="计次";
+                    inpt[0].value="停止";
+
+                }
+                inpt[1].onclick=function(){
+                    var oli=document.createElement("ol");
+                    oli.innerHTML=document.getElementsByTagName("div")[0].innerHTML;
+                    oul.appendChild(oli);
+                    inpt[0].value="停止"
+                }
+            }else{
+                inpt[1].value="清除";
+                inpt[0].value="计时";
+                clearInterval(time);
+                A=parseInt(spn[3].innerText);
+                B=parseInt(spn[2].innerText);
+                C=parseInt(spn[1].innerText);
+                D=parseInt(spn[0].innerText);
+                S=A+B*1000+C*1000*60+D*1000*60;
+                inpt[1].onclick=function(){
+                    spn[3].innerHTML="000";
+                    spn[2].innerHTML="00";
+                    spn[1].innerHTML="00";
+                    spn[0].innerHTML="00";
+                    oul.innerHTML="";
+                    inpt[0].value="计时";
+                    clearInterval(time);
+                    A=B=C=D=S=0
+                };
+            }
+            onOff = !onOff;
+        };
+    function toTwo(x){
+        return x >= 10 ? ""+x : "0"+ x;
+    }
+
+</script>
+</body>
+</html>

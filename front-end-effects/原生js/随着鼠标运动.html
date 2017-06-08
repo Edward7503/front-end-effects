@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    var divs=document.getElementsByTagName("div");
+    document.onmousemove=function(){
+        var event=event||window.event;
+        var num=0;
+        clearInterval(time);
+        var time=setInterval(fn,100);
+        function fn(){
+            divs[num].style.left=event.clientX+"px";
+            divs[num].style.top=event.clientY+"px";
+            num++;
+            if(num==divs.length){
+                clearInterval(time)
+            }
+            function color(){
+                return Math.ceil(Math.random()*255)
+            }
+            divs[num].style.background='rgb('+color()+','+color()+','+color()+')'
+        }
+
+    }
+</script>
+</body>
+</html>

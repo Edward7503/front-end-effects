@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖放本地资源</title>
+    <style>
+        #box{
+            background-color: #CCCCCC;
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var oBox=document.getElementById("box");
+    oBox.ondragover=function(e){
+        e.preventDefault();
+    }
+    oBox.ondrop=function(e){
+        e.preventDefault();
+        var f= e.dataTransfer.files[0];
+        var fileReader=new FileReader();
+        fileReader.onload= function (e) {
+            oBox.innerHTML="<img src=\""+fileReader.result+"\">";
+        }
+        fileReader.readAsDataURL(f);
+    }
+</script>
+</body>
+</html>

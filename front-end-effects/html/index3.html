@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .ball{
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        img{
+            position: absolute;
+            left: 0;
+            top:0;
+            width: 500px;
+            height: 500px;
+        }
+        .right{
+            position: absolute;
+            right: 0;
+            top:225px;
+            width: 50px;
+            height: 50px;
+            background: rgba(250,250,250,0.5);
+            text-align: center;
+            line-height: 50px;
+        }
+        .left{
+            position: absolute;
+            left: 0;
+            top:225px;
+            width: 50px;
+            height: 50px;
+            background: rgba(250,250,250,0.5);
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="ball">
+        <img src="../images/1.png" alt="">
+        <img src="../images/2.png" alt="">
+        <img src="../images/3.png" alt="">
+        <img src="../images/4.png" alt="">
+        <img src="../images/5.png" alt="">
+    </div>
+    <div class="right">&gt</div>
+    <div class="left">&lt</div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    var flag=1;
+    var num=0;
+    var $ball= $(".ball");
+    function move(){
+        if(flag){
+            num++;
+            if(num==$ball.children().length){
+                num=0
+            }
+        }else{
+            num--;
+            if(num==-1){
+                num=$ball.children().length
+            }
+        }
+        $(".ball img").eq(num).fadeIn(200).siblings().fadeOut(200);
+    }
+    $(".left").click(function(){
+        flag=0;
+        move()
+    });
+    $(".right").click(function(){
+        flag=1;
+        move()
+    });
+    var time=setInterval(move,1000);
+    $(".box").hover(function(){
+        clearInterval(time)
+    },function(){
+        flag=1;
+        move()
+    });
+</script>
+</body>
+</html>

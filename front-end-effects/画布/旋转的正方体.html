@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas width="1350" height="637" id="canvas" ></canvas>
+<script>
+    var canvas=document.getElementById("canvas");
+    var cxt=canvas.getContext("2d");
+    var num=0;
+  function fn(){
+      cxt.clearRect(0,0,1350,637);
+      num++;
+      cxt.save();
+      cxt.translate(500,300);
+//      相对该图形中心旋转
+      cxt.rotate(num*Math.PI/180);
+//      上面一个面
+      cxt.beginPath();
+      cxt.moveTo(-25,-75);
+      cxt.lineTo(75,-75);
+      cxt.lineTo(25,-25);
+      cxt.lineTo(-75,-25);
+      cxt.lineTo(-25,-75);
+      cxt.stroke();
+      cxt.closePath();
+//      下面一个面
+      cxt.beginPath();
+      cxt.moveTo(-25,25);
+      cxt.lineTo(75,25);
+      cxt.lineTo(25,75);
+      cxt.lineTo(-75,75);
+      cxt.lineTo(-25,25);
+      cxt.stroke();
+      cxt.closePath();
+//      侧边
+      cxt.beginPath();
+      cxt.moveTo(-75,-25);
+      cxt.lineTo(-75,75);
+      cxt.lineTo(25,75);
+      cxt.lineTo(25,-25);
+      cxt.lineTo(-75,-25);
+      cxt.stroke();
+      cxt.closePath();
+
+      cxt.beginPath();
+      cxt.moveTo(-25,-75);
+      cxt.lineTo(75,-75);
+      cxt.lineTo(75,25);
+      cxt.lineTo(-25,25);
+      cxt.lineTo(-25,-75);
+      cxt.stroke();
+      cxt.closePath();
+      cxt.restore()
+  }
+setInterval(fn,10)
+</script>
+</body>
+</html>

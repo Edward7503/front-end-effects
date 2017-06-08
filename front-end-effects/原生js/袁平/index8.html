@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: black;
+        }
+        p{
+
+            width: 50px;
+            height: 50px;
+            position:absolute;
+            background: red;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        function color(){
+            return Math.ceil(Math.random()*255);
+        }
+        function fn(){
+            return Math.ceil(Math.random()*600)
+        }
+        var time=null;
+        clearInterval(time);
+        time=setInterval(test,500);
+        function test(){
+            var spn=document.createElement("p");
+            spn.style.background='rgb('+color()+','+color()+','+color()+')';
+            spn.style.top=fn()+'px';
+            document.body.appendChild(spn);
+            move(spn,spn.offsetLeft,0);
+
+        }
+        function move(obj,start,end){
+            var time1;
+            var step=0;
+            var maxstep=1000;
+            var steep=(end-start)/maxstep;
+            clearInterval(time1);
+            time1=setInterval(main,10);
+            function main(){
+                start=start+steep;
+                obj.style.left = start + "px";
+                step++;
+                if(step==maxstep){
+                    clearInterval(time1)
+                }
+                if(obj.offsetLeft<=20){
+                    obj.style.display="none"
+                }
+            }
+        }
+
+    }
+
+
+
+
+</script>
+</body>
+</html>

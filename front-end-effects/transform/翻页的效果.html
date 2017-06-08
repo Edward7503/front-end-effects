@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .book{
+            width: 460px;
+            height: 300px;
+            position: relative;
+            margin: 150px 400px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transform: rotateX(30deg);
+        }
+        .page{
+            width: 230px;
+            height: 300px;
+            border: 1px solid #666;
+            position: absolute;
+            right: 0;
+            transform-origin: left;
+            transform-style: preserve-3d;
+            backface-visibility:hidden;
+            font-size: 60px;
+            text-align: center;
+            line-height: 300px;
+        }
+        .page span{
+            display: block;
+            width: 100%;
+            position: absolute;
+            background-color: #00FFFF;
+            backface-visibility:hidden;
+            /*背面不可视*/
+        }
+        .page span:nth-child(2){
+            transform: rotateY(-180deg);
+        }
+
+        @keyframes page {
+            0%{
+                transform: rotateY(0deg);
+            }
+            100%{
+                transform: rotateY(-180deg);
+                z-index: 10;
+            }
+        }
+        @keyframes page1 {
+            0%{
+                transform: rotateY(-180deg);
+                z-index: 10;
+            }
+            100%{
+                transform: rotateY(0deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="book">
+    <div class="page">
+        <span>1</span>
+        <span>2</span>
+    </div>
+    <div class="page">
+        <span>3</span>
+        <span>4</span>
+    </div>
+    <div class="page">
+        <span>5</span>
+        <span>6</span>
+    </div>
+    <div class="page">
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <div class="page">
+        <span>9</span>
+        <span>10</span>
+    </div>
+    <div class="page">
+        <span>11</span>
+        <span>12</span>
+    </div>
+    <div class="page">
+        <span>13</span>
+        <span>14</span>
+    </div>
+    <div class="page">
+        <span>15</span>
+        <span>16</span>
+    </div>
+    <div class="page">
+        <span>17</span>
+        <span>18</span>
+    </div>
+    <div class="page">
+        <span>19</span>
+        <span>20</span>
+    </div>
+</div>
+<script>
+    var before = document.getElementById("before");
+    var after = document.getElementById("after");
+    var page = document.getElementsByClassName("page");
+    function rotate(e){
+        var middle = 0;
+        for(var z=0;z<page.length;z++) {
+            page[z].style.zIndex = page.length - z;
+            page[z].children[0].onclick = function () {
+                for (var z = 0; z < page.length; z++) {
+                    if (this == page[z].children[0]) {
+                        if (middle <= page.length) {
+                           page[z].style.animation = "page 1.5s linear 1 forwards";
+                        } else {
+                            middle = page.length;
+                        }
+                        middle++;
+                    }
+                }
+            };
+        }
+        document.onclick = function () {
+                   if (middle >= 0) {
+                       page[z].style.animation = "page1 1.5s linear 1 forwards";
+                       middle--;
+                   } else {
+                       middle = 0;
+                   }
+        }
+
+    }
+    rotate();
+</script>
+</body>
+</html>

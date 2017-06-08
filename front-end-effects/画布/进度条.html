@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas width="500px" height="500px" id="canvas" style="background: pink">你太low了</canvas>
+<canvas width="500px" height="500px" id="canvas1" style="background: green">你太low了</canvas>
+
+<script>
+    var canvas=document.getElementById("canvas");
+    var canvas1=document.getElementById("canvas1");
+    var cxt1=canvas1.getContext("2d");
+    var cxt=canvas.getContext("2d");
+
+
+    function fn(obj1,obj2,colors,tests,x,cxt){
+        var num=0;
+        var time=setInterval(function(){
+            num++;
+            cxt.clearRect(0,0,500,500);
+            cxt.beginPath();
+            cxt.lineWidth=30;
+            cxt.strokeStyle="gray";
+            cxt.arc(obj1,obj2,100,0,360,false);
+            cxt.stroke();
+            cxt.closePath();
+
+
+            cxt.beginPath();
+            cxt.lineWidth=30;
+            cxt.strokeStyle=colors;
+            cxt.arc(obj1,obj2,100,3*Math.PI/2,num*Math.PI/180+3*Math.PI/2,false);
+            cxt.stroke();
+            cxt.closePath();
+
+            cxt.beginPath();
+            cxt.fillStyle="blue";
+            cxt.font="50px 宋体";
+            cxt.textAlign="center";
+            cxt.textBaseline="middle";
+            cxt.fillText(tests,obj1,obj2);
+            cxt.fill();
+            cxt.closePath();
+            if(num==x){
+                clearInterval(time);
+            }
+        },1);
+    }
+//    50%
+    fn(250,250,"red","50%",180,cxt);
+    //75%
+    fn(250,250,"red","75%",270,cxt1);
+</script>
+</body>
+</html>

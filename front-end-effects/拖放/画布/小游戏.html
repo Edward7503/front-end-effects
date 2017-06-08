@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas width="1000px" height="500px" id="canvas">你太low了</canvas>
+<script>
+    var canvas=document.getElementById("canvas");
+    var bodys=document.getElementsByTagName("body")[0];
+    var event=event||window.event;
+    var time;
+    var cxt=canvas.getContext("2d");
+    function fn(){
+        cxt.beginPath();
+        cxt.fillStyle="red";
+        cxt.arc(500,500,100,0,Math.PI,true);
+        cxt.closePath();
+        cxt.fill();
+    }
+    cxt.beginPath();
+    cxt.strokeStyle="red";
+    cxt.lineWidth=10;
+    cxt.moveTo(500,500);
+    cxt.lineTo(300,350);
+    cxt.stroke();
+    cxt.closePath();
+    cxt.fill();
+    fn();
+    bodys.onclick=function(){
+        var x=event.clientX;
+        var y=event.clientY;
+        clearInterval(time);
+        var num=0;
+        time=setInterval(function(){
+            cxt.clearRect(0,0,1000,500);
+            fn();
+            cxt.strokeStyle="red";
+            cxt.lineWidth=10;
+            cxt.beginPath();
+            cxt.moveTo(500,500);
+            if(x<500){
+                cxt.lineTo(500-250*Math.cos(Math.atan((y-500)/(x-500))),500-250*Math.sin(Math.atan((y-500)/(x-500))));
+            }else{
+                cxt.lineTo(500+250*Math.cos(Math.atan((y-500)/(x-500))),500+250*Math.sin(Math.atan((y-500)/(x-500))));
+            }
+            cxt.stroke();
+            cxt.closePath();
+            num+=10;
+            if(num==500){
+                num=0
+            }
+            cxt.beginPath();
+            cxt.strokeStyle="blue";
+            cxt.lineWidth=10;
+            if(x<500){
+                cxt.moveTo(500-num*Math.cos(Math.atan((y-500)/(x-500))),500-num*Math.sin(Math.atan((y-500)/(x-500))));
+                cxt.lineTo(500-(50+num)*Math.cos(Math.atan((y-500)/(x-500))),500-(50+num)*Math.sin(Math.atan((y-500)/(x-500))));
+            }else{
+                cxt.moveTo(500+num*Math.cos(Math.atan((y-500)/(x-500))),500+num*Math.sin(Math.atan((y-500)/(x-500))));
+                cxt.lineTo(500+(50+num)*Math.cos(Math.atan((y-500)/(x-500))),500+(50+num)*Math.sin(Math.atan((y-500)/(x-500))));
+            }
+            cxt.stroke();
+            cxt.closePath();
+            cxt.fill();
+            console.log(num)
+        },10)
+
+    }
+
+
+</script>
+
+
+</body>
+</html>

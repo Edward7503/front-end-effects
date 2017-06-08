@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <span>00</span>:
+    <span>00</span>:
+    <span>00</span>:
+    <span>00</span>
+</div>
+
+<input type="button" value="计时"/>
+<input type="button" value="计次"/>
+<ul></ul>
+<script>
+    var box=document.getElementsByTagName("div")[0]
+    var spn=document.getElementsByTagName("span");
+    var inpt=document.getElementsByTagName("input");
+    var oul=document.getElementsByTagName("ul")[0]
+    var flag=true;
+    var s=0;
+    var S=0;
+    var i=0
+    var time=null;
+    inpt[0].onclick=function(){
+        if(flag==true){
+            clearInterval(time);
+            time=setInterval(fn,10);
+            function fn(){
+                s++;
+                i=s+S;
+                spn[3].innerHTML=test1(i%100)
+                spn[2].innerHTML=test1(parseInt(i/100)%60)
+                spn[1].innerHTML=test1(parseInt(i/(100*60))%60);
+                spn[0].innerHTML=test1(parseInt(i/(100*3600))%24)
+            }
+            inpt[0].value="停止";
+            inpt[1].value="计次";
+            inpt[1].onclick=function(){
+                var uli=document.createElement("li");
+                uli.innerHTML=box.innerHTML;
+                oul.insertBefore(uli,oul.children[0]);
+            }
+        }else{
+            clearInterval(time);
+            S=spn[0].innerText*60*60*100+spn[1].innerText*60*100+spn[2].innerText*100+spn[3].innerText*1;
+            inpt[0].value="计时";
+            inpt[1].value="清除";
+            inpt[1].onclick=function(){
+                clearInterval(time);
+                spn[0].innerHTML="00";
+                spn[1].innerHTML="00";
+                spn[2].innerHTML="00";
+                spn[3].innerHTML="00";
+                oul.innerHTML=""
+
+            }
+        }
+        flag=!flag
+    }
+    function test1(a){
+        return a<10?"0"+a:a
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box1{
+            width: 300px;
+            border: 1px solid red;
+            margin: 30px auto;
+            color: transparent;
+            background: -webkit-linear-gradient(left,red,green,blue,pink);
+            -webkit-background-clip:text;
+            -moz-background-clip:text;
+            -o-background-clip:text;
+            -ms-background-clip:text;
+        }
+        .box1-1{
+            width: 300px;
+            border: 1px solid red;
+            margin: 30px auto;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient: vertical;
+        }
+        .box2{
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            /*border: 1px solid red;*/
+            text-align: center;
+            line-height: 300px;
+            border-radius: 300px;
+            background: -webkit-radial-gradient(100px 100px ,#fff 2%,#666 80%);
+            background: -o-radial-gradient(100px 100px ,red 20%,green 40%,blue 60%,pink 90%);
+            background: -moz-radial-gradient(100px 100px ,red 20%,green 40%,blue 60%,pink 90%);
+            background: -ms-radial-gradient(100px 100px ,red 20%,green 40%,blue 60%,pink 90%);
+        }
+        .box3{
+            width: 300px;
+            height: 100px;
+            border-radius: 30px;
+            text-align: center;
+            line-height: 100px;
+            margin: 30px auto;
+            background: -webkit-linear-gradient(top,#ccc ,#fff,#ccc);
+        }
+        .box4{
+            width: 300px;
+            height: 200px;
+            margin: 30px auto;
+            background:url("1.jpg") no-repeat;
+            background-size:cover;
+
+            border: 1px solid red;
+        }
+        .box5{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            background:url("1.jpg") no-repeat;
+            background-size:300px 100px;
+
+            border: 1px solid red;
+        }
+        .box6{
+            width: 300px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 30px auto;
+            background:url("1.jpg") no-repeat;
+            background-size:contain;
+
+        }
+        .box7{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            padding: 50px;
+            background:url("1.jpg") no-repeat;
+            border: 10px dotted red;
+            background-origin:border-box ;
+
+        }
+        .box8{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            padding: 50px;
+            background:url("1.jpg") no-repeat;
+            border: 10px dotted red;
+            background-origin:padding-box ;
+
+        }
+        .box9{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            padding: 50px;
+            background:url("1.jpg") no-repeat;
+            border: 10px dotted red;
+            background-origin:content-box ;
+
+        }
+        .box10{
+            width: 300px;
+            height: 100px;
+            margin: 30px auto;
+            padding: 50px;
+            background:url("1.jpg") left top no-repeat,url("1.png") right top no-repeat;
+            background-size: contain;
+            border: 10px dotted red;
+            background-origin:content-box ;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    边框、内边距、内容区域这些是CSS盒子模型的内容。在CSS盒子模型中，
+    我们都知道“任何元素都可以看做一个盒子”。学习了CSS中的background-image属性时，我们知道背景图片都是从内边距开始平铺的，
+    有了background-origin属性，我们可以控制背景图片平铺的开始位置是否为边框、内边距或内容区域。
+</div>
+<div class="box1-1">
+    边框、内边距、内容区域这些是CSS盒子模型的内容。在CSS盒子模型中，
+    我们都知道“任何元素都可以看做一个盒子”。学习了CSS中的background-image属性时，我们知道背景图片都是从内边距开始平铺的，
+    有了background-origin属性，我们可以控制背景图片平铺的开始位置是否为边框、内边距或内容区域。
+</div>
+<div class="box2">径向渐变</div>
+<div class="box3">线性渐变</div>
+<div class="box4"></div>
+　　  　　　　　当属性background-size的值为cover时，背景图像按比例缩放，直到覆盖整个背景区域为止，但可能会裁剪掉部分图像。
+<div class="box5"></div>
+<div class="box6"></div>
+　　　　　　　　　当属性background-size的值为contain时，背景图像会完全显示出来，但可能不会完全覆盖背景区域。
+<div class="box7"></div>border-box
+<div class="box8"></div>padding-box
+<div class="box9"></div>content-box
+<div class="box10"></div>
+</body>
+</html>　　　　

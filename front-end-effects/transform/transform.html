@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            background: red;
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 30px;
+        }
+        .box1{
+            transform: rotate(30deg);
+        }
+        .box1-1{
+            /*transform: rotate3d(1,1,0,30deg);*/
+            -webkit-transform: rotateX(20deg) rotateY(-50deg) rotateZ(-30deg);
+
+        }
+        .box2{
+            transform:skew(30deg,-30deg)
+        }
+        .box3{
+            transform:scale(1.5,1.5)
+        }
+        .box4{
+
+            transform: translate(30px,80px)
+        }
+        .box5{
+            font-size: 15px;
+            -webkit-transform: matrix(1,0.5,-0.5,1,50,50);
+        }
+        .box6{
+            text-align: center;
+            line-height: 100px;
+            -webkit-transition:background-color,border-radius 1s,1s linear,linear 1s,1s;
+        }
+        .box6:hover{
+            background: blue;
+            border-radius: 100px;
+        }
+        .box7{
+            text-align: center;
+            line-height: 100px;
+            -webkit-transition:height,wdith 1s,1s linear,linear 1s,1s;
+        }
+        .box7:hover{
+            width: 150px;
+            height: 200px;
+        }
+        .box8{
+            position: relative;
+            overflow: hidden;
+
+        }
+        p{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            top:70px;
+            left: 50px;
+            -webkit-transition:all 1s linear;
+        }
+        p:hover{
+            top:0;
+            left: 0;
+        }
+        .box9{
+            -webkit-transition:height,wdith 1s,1s ease-in-out,ease-out 1s,1s;
+        }
+        .box9:hover{
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+        <div class="box1">旋转rotate</div>
+        <div class="box1-1">3D旋转rotate3D</div>
+        <div class="box2">扭曲skew</div>
+        <div class="box3">缩放scale</div>
+        <div class="box4">移动translate</div>
+        <div class="box5">matrix</div>
+        <div class="box6">来摸我把</div>
+        <div class="box7">再摸一次</div>
+        <div class="box8">
+            <p>摸我吧</p>
+        </div>
+        <div class="box9">transition-timing-function:ease</div>
+        <div class="box10"></div>
+</body>
+</html>

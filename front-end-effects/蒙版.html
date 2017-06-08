@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        span{
+            margin: -30px 300px;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            margin:0 auto ;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+        }
+        .box1{
+            -webkit-mask: url(06.png) 40px 5px no-repeat;
+        }
+        .box2{
+            -webkit-mask: url(03.png) 20px 90px no-repeat;
+        }
+        .box3{
+            -webkit-mask: url(04.png) 0 30px no-repeat;
+            -webkit-mask-size: 50px 50px;
+        }
+        .box{
+            -webkit-mask-image:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,1)),to(rgba(0,0,0,0)));
+        }
+        .ball-1{
+            -webkit-mask: url(04.png) 20px 30px no-repeat;
+
+        }
+        .ball{
+            -webkit-mask-image:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,1)),to(rgba(0,0,0,0)));
+        }
+        .box4{
+            margin-bottom: 500px;
+            -webkit-box-reflect: below 0px;
+        }
+        .box5{
+            width: 300px;
+            height: 300px;
+            -webkit-box-reflect: left 10px -webkit-linear-gradient(left,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 70%);
+        }
+        .box6{
+            width: 800px;
+            margin: 10px auto;
+        }
+        .ball2{
+            opacity: 0.4;
+            -webkit-transform: scaleX(-1);
+            -moz-transform: scaleX(-1);
+            -ms-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            transform: scaleX(-1);
+            /*-webkit-mask-image:-webkit-gradient(linear,right top,left top,color-stop(0,rgba(0,0,0,1)),color-stop(0.7,rgba(0,0,0,0)));*/
+            -webkit-mask-image:-webkit-linear-gradient(right,rgba(0,0,0,1) 0,rgba(0,0,0,0) 70%); ;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <img src="02.jpg" />
+</div>
+<span>蒙版</span>
+<div class="box2">
+    <img src="02.jpg" />
+</div>
+<div class="box3">
+    <img src="02.jpg" />
+</div>
+<div class="box">
+    <img src="02.jpg" />
+</div>
+<span> 透明度渐变+蒙版</span>
+<div class="ball-1">
+    <img src="02.jpg" class="ball"/>
+</div>
+
+<div class="box4">
+    <img src="02.jpg" alt=""/>
+</div>
+<div class="box5">
+    <img src="02.jpg" alt=""/>
+</div>
+<hr/>
+<div class="box6">
+    翻转
+    <img src="02.jpg" />
+    <img src="02.jpg" class="ball2"/>
+</div>
+</body>
+</html>

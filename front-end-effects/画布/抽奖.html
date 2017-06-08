@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            position: relative;
+        }
+        button{
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background: red;
+            outline: none;
+            border: none;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            color: white;
+           font-size: 30px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <canvas width="800" height="500" id="canvas">你太low了</canvas>
+    <button id="btn">抽奖</button>
+</div>
+
+<script>
+    var canvas=document.getElementById("canvas");
+    var btns=document.getElementById("btn");
+    var cxt=canvas.getContext("2d");
+    var time=null;
+    var arr1=[1,2,3,4,5,6,7,8,9,10,11,12];
+    var arr2=[0,50,100,80,160,200,222,180,130,30,90,240];
+    var num=0;
+//    创建表盘
+    function fn(){
+        for(var i=0;i<12;i++){
+            cxt.beginPath();
+            cxt.fillStyle="rgb("+arr2[i]+","+arr2[i]+","+arr2[i]+")";
+            cxt.moveTo(250,250);
+            cxt.arc(250,250,200,i*Math.PI/6,(i+1)*Math.PI/6,false);
+            cxt.fill();
+            cxt.closePath();
+        }
+        for(var i=0;i<12;i++){
+            cxt.beginPath();
+            cxt.fillStyle="red";
+            cxt.font="30px 宋体";
+            cxt.textAlign="center";
+            cxt.textBaseline="middle";
+            cxt.fillText(String(arr1[i]),250+150*Math.sin(i*Math.PI/6+Math.PI/12),250+150*Math.cos(i*Math.PI/6+Math.PI/12));
+            cxt.closePath();
+        }
+    }
+    fn();
+//    指针
+        cxt.beginPath();
+        cxt.fillStyle="red";
+        cxt.strokeStyle="red";
+        cxt.moveTo(250,250);
+       cxt.arc(250,250,200,Math.PI*num/6,Math.PI*(num+1)/6,false);
+        cxt.closePath();
+        cxt.fill();
+    btns.onclick=function(){
+        var max=Math.ceil(Math.random()*200)+1000;
+        var steep=10;
+        var ste=0;
+        num=0;
+        clearInterval(time);
+        time=setInterval(function(){
+            num++;
+            //    清除之前的表盘
+            cxt.clearRect(0,0,800,500);
+            //    创建表盘
+            fn();
+            ste+=steep;
+            if(ste>=max-90){
+                steep=Math.ceil((max-ste)/3);
+                if(ste>=max){
+                    clearInterval(time);
+                }
+            }else{
+                steep=30
+            }
+            cxt.save();
+            cxt.translate(250,250);
+            cxt.rotate(Math.PI*num/6);
+            cxt.beginPath();
+            cxt.fillStyle="red";
+            cxt.strokeStyle="red";
+            cxt.moveTo(0,0);
+            cxt.arc(0,0,200,0,Math.PI/6,false);
+            cxt.closePath();
+            cxt.fill();
+            cxt.restore()
+        },100);
+
+    }
+</script>
+</body>
+</html>

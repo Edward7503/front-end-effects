@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+           width: 1024px;
+            margin:0 200px;
+        }
+        ul li{
+            list-style: none;
+            width: 1024px;
+            height: 800px;
+            border: 1px solid black;
+        }
+        ol{
+            display: none;
+            position: fixed;
+            left: 0;
+            top:0px;
+        }
+        ol li{
+            width:80px;
+            height: 50px;
+            background:#3c3c3c;
+            border: 1px solid black;
+            color: white;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            cursor: ;
+        }
+        ol li:hover{
+            background: red;
+            color: white;
+        }
+      #top,#footer{
+          width: 1026px;
+          height: 100px;
+          background: black;
+          margin: 0 200px;
+      }
+    </style>
+</head>
+<body>
+<div id="top"></div>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<ol>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>变速回顶部</li>
+      <li>匀速回顶部</li>
+      <li>直接回顶部</li>
+
+
+
+</ol>
+<div id="footer"></div>
+<script>
+    var oul=document.getElementsByTagName("ul");
+    var ool=document.getElementsByTagName("ol");
+    var uLi=document.getElementsByTagName("ul")[0].getElementsByTagName("li");
+    var oLi=document.getElementsByTagName("ol")[0].getElementsByTagName("li");
+    var time=null;
+    window.onscroll=function(){
+        var scrT=document.body.scrollTop||document.documentElement.scrollTop;
+        if(scrT>350){
+            ool[0].style.display="block"
+        }else{
+            ool[0].style.display="none"
+        }
+        var s=null;
+        for(var j=0;j<uLi.length;j++){
+            if(scrT>=uLi[j].offsetTop-100){
+              s=j ;
+            }
+            oLi[j].style.background="#3c3c3c";
+        }
+        oLi[s].style.background="red";
+    };
+    for(var i=0;i<oLi.length-3;i++){
+        oLi[i].onclick=function(){
+            for(var j=0;j<uLi.length;j++){
+                if(this==oLi[j]){
+                    document.body.scrollTop= uLi[j].offsetTop;
+                    document.documentElement.scrollTop=uLi[j].offsetTop
+                }
+            }
+
+        }
+    };
+    oLi[10].onclick=function(){
+        clearInterval(time);
+        time=setInterval(function(){
+            var scrT=document.body.scrollTop||document.documentElement.scrollTop;
+            var speed=scrT/9;
+            document.body.scrollTop=document.documentElement.scrollTop=scrT-speed;
+            if(scrT<=0){
+                clearInterval(time)
+            }
+        },40)
+    };
+    oLi[11].onclick=function(){
+        clearInterval(time);
+        time=setInterval(function(){
+            var scrT=document.body.scrollTop||document.documentElement.scrollTop;
+            var speed=1000/9;
+            document.body.scrollTop=document.documentElement.scrollTop=scrT-speed;
+            if(scrT<=0){
+                clearInterval(time)
+            }
+        },40)
+    };
+    oLi[12].onclick=function(){
+            var scrT=document.body.scrollTop||document.documentElement.scrollTop;
+            document.body.scrollTop=document.documentElement.scrollTop=100
+    }
+
+</script>
+</body>
+</html>

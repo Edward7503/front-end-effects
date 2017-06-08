@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" placeholder="请输入你要的天数"/>
+<input type="button" value="确定"/>
+<div></div>
+<script>
+    window.onload=function(){
+        var inpt=document.getElementsByTagName("input");
+        var divs=document.getElementsByTagName("div")[0];
+        inpt[1].onclick=function(){
+            var b=inpt[0].value;
+            if(isNaN(b)){
+                alert("请输入正确的天数")
+            }else{
+                var date=new Date();
+                var c=b*24*60*60*1000+date.getTime();
+                date.setTime(c);
+                var time= date.toLocaleString();
+//                转化为本地时间
+                divs.innerHTML=b+'天后的时间为：'+time;
+//                var a=date.getTime()+c;
+//                var s=new Date(a);
+//                var year= s.getFullYear();
+//                var month= fn(s.getMonth()+1);
+//                var day=fn(s.getDate());
+//                var hour=fn(s.getHours());
+//                var minutes=fn(s.getMinutes());
+//                var second=fn(s.getSeconds());
+//                var haomiao= fn(s.getMilliseconds());
+//                var y= s.getDay();
+//                星期
+//                var arrWeeb = ["天","一","二","三","四","五","六"];
+//               function fn(x){
+//                   return x<10?"0"+x:x
+//               }
+//                 if(haomiao<100){
+//                    haomiao="0"+haomiao
+//                }
+//                divs.innerHTML=b+'天后的时间为：'+year+' '+month+' '+day+' '+hour+': '+minutes+': '+second+':'+haomiao +' '+'星期'+arrWeeb[y]
+            }
+
+        }
+
+    };
+
+</script>
+</body>
+</html>

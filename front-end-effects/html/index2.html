@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            perspective: 1000px;
+        }
+        ul{
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+            -webkit-transform-style: preserve-3d;
+            -webkit-animation: move 10s linear infinite;
+            -webkit-transform-origin:100px 100px;
+
+        }
+        li{
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left:0;
+            top:0;
+            list-style: none;
+           text-align: center;
+
+        }
+        ul li:first-child{
+            transform: rotateY(45deg)  translateZ(300px);
+        }
+        ul li:nth-child(2){
+            transform: rotateY(90deg)  translateZ(300px);
+        }
+        ul li:nth-child(3){
+            transform: rotateY(135deg)  translateZ(300px);
+        }
+        ul li:nth-child(4){
+            transform: rotateY(180deg)  translateZ(300px);
+        }
+        ul li:nth-child(5){
+            transform: rotateY(225deg)  translateZ(300px) ;
+        }
+        ul li:nth-child(6){
+            transform:  rotateY(270deg) translateZ(300px);
+        }
+        ul li:nth-child(7){
+            transform: rotateY(315deg)  translateZ(300px);
+        }
+        ul li:nth-child(8){
+            transform: rotateY(360deg)  translateZ(300px);
+        }
+        @-webkit-keyframes move {
+            0%{
+                transform: rotateY(0deg);
+            }
+            50%{
+                 transform: rotateY(180deg);
+             }
+            100%{
+                transform: rotateY(360deg);
+            }
+         }
+        img{
+            width: 250px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="../images/1.png"></li>
+    <li><img src="../images/2.png"></li>
+    <li><img src="../images/3.png"></li>
+    <li><img src="../images/4.png"></li>
+    <li><img src="../images/5.png"></li>
+    <li><img src="../images/6.png"></li>
+    <li><img src="../images/7.png"></li>
+    <li><img src="../images/8.png"></li>
+</ul>
+</body>
+</html>

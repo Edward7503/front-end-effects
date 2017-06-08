@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖放</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 400px;
+        }
+        #box1{
+            background-color: #CCCCCC;
+            float: left;
+        }
+        #box2{
+            background-color: aqua;
+            float: left;
+        }
+        #img1{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="box1" class="box"></div>
+<div id="box2" class="box"></div>
+<img src="1.png" id="img1" alt=""/>
+<script>
+    var oBox1=document.getElementById("box1");
+    var oBox2=document.getElementById("box2");
+    var img1=document.getElementById("img1");
+    img1.ondragstart=function(e){
+        e.dataTransfer.setData("imgId","img1");
+    }
+    oBox1.ondragover=function(e){
+        e.preventDefault();
+    }
+    oBox2.ondragover=function(e){
+        e.preventDefault();
+    }
+    oBox1.ondrop=dropImghandler;
+    oBox2.ondrop=dropImghandler;
+    function dropImghandler(e){
+        e.preventDefault();
+        var img=document.getElementById(e.dataTransfer.getData("imgId"));
+        e.target.appendChild(img);
+    }
+</script>
+</body>
+</html>

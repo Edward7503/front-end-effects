@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background: red;
+            position: absolute;
+            margin-top: 300px;
+        }
+        span{
+            width: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background: red;
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+    var divc=document.getElementsByTagName("div")[0];
+    var i=0;
+    setInterval(function(){
+        i++;
+        var box=document.createElement("span");
+        document.body.appendChild(box);
+        divc.style.left=(i*Math.PI/180)*100+"px";
+        divc.style.top=Math.sin(i*Math.PI/180)*100+"px";
+        box.style.left=divc.offsetLeft+"px";
+        box.style.top=divc.offsetTop+"px"
+
+    },100)
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 500px;
+            height: 600px;
+           margin: 40px auto;
+            border: 1px solid black;
+            position: relative;
+        }
+        span{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span></span>
+</div>
+<script>
+    var spn= document.getElementsByTagName("span")[0];
+    var box=document.getElementsByTagName("div")[0];
+    spn.onmousedown=function(){
+        var event=event||window.event;
+        var testx=event.clientX-spn.offsetLeft;
+        var testy=event.clientY-spn.offsetTop;
+        if(event.preventDefault){
+            event.preventDefault()
+        }else{
+            event.returnValue=false;
+        }
+        document.onmousemove=function(){
+            var event=event||window.event;
+            var lefts=event.clientX-testx;
+            var tops=event.clientY-testy;
+           var  mouseX=box.clientWidth-spn.offsetWidth;
+           var mouseY=box.clientHeight-spn.offsetHeight;
+            if(lefts>=mouseX){
+                lefts=mouseX
+            }
+            if(lefts<=0){
+                lefts=0
+            }
+            if(tops>=mouseY){
+                tops=mouseY
+            }
+            if(tops<=0){
+                tops=0
+            }
+            spn.style.left=lefts+"px";
+            spn.style.top=tops+"px";
+        }
+    };
+    document.onmouseup=function(){
+        document.onmousemove=null
+    }
+</script>
+</body>
+</html>

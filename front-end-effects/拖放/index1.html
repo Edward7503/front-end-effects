@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box1{
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            float: left;
+        }
+        #img1{
+            width: 200px;
+            height: 200px;
+            background: red;
+            float: left;
+        }
+        #box{
+            width: 1300px;
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+
+    <div ondrop="move(event)"  ondragover="test(event)" class="box1"></div>
+    <div ondrop="move(event)"  ondragover="test(event)" class="box1"></div>
+    <div id="img1" draggable="true" ondragstart="fn(event)"></div>
+<script>
+    function fn(e){
+        e.dataTransfer.setData('Test', e.target.id)
+    }
+    function test(e){
+        e.preventDefault();
+    }
+    function move(e){
+        e.preventDefault();
+        var num=e.dataTransfer.getData("Test");
+        e.target.appendChild(document.getElementById(num))
+    }
+    document.ondragover=test;
+    document.ondrop=move;
+</script>
+</body>
+</html>

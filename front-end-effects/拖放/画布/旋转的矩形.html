@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas width="800px" height="500px" id="canvas">你太low了</canvas>
+<script>
+    var canvas=document.getElementById("canvas");
+    var cxt=canvas.getContext("2d");
+    var num=1;
+    var s=0;
+    var x=true;
+    setInterval(function(){
+        s++;
+        if(x){
+            num++;
+            if(num==350){
+                x=false
+            }
+        }
+      else{
+           num--;
+            if(num==0){
+                x=true
+            }
+       }
+        cxt.clearRect(0,0,800,500);
+        cxt.save();
+        cxt.translate(400,300);
+        cxt.rotate(s*Math.PI/180);
+        cxt.beginPath();
+        cxt.fillRect(-num/2,-num/2,num,num);
+        cxt.closePath();
+        cxt.restore();
+    },10)
+</script>
+</body>
+</html>

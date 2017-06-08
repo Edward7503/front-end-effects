@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" placeholder="请输入数字"/>
+<input type="button" value="确定"/>
+<div></div>
+<script>
+    var inpt=document.getElementsByTagName("input");
+    var divs=document.getElementsByTagName("div")[0];
+    inpt[1].onclick=function(){
+        var a=inpt[0].value
+        if(isNaN(a)){
+            alert("请输入数字")
+        }else{
+            var date=new Date();
+            var d=date.getTime()+inpt[0].value*1000*3600*24;
+            date=new Date(d);
+            var time=date.toLocaleString();
+            alert(time)
+        }
+
+    }
+
+</script>
+</body>
+</html>

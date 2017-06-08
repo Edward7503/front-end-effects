@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+           float: left;
+            width: 499px;
+            height: 500px;
+            border-right: 1px solid black;
+            margin: 0;
+        }
+        p{
+            float: left;
+            width: 599px;
+            height: 500px;
+            border-right: 1px solid black;
+            margin: 0;
+        }
+        span{
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 200px;
+
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+<p></p>
+<span></span>
+<input type="button" value="500"/>
+<input type="button" value="1100"/>
+<input type="button" value="0"/>
+<script>
+    var inpt=document.getElementsByTagName("input");
+    var spn=document.getElementsByTagName("span")[0];
+    var time1,time2,time3;
+    inpt[0].onclick=function(){
+        clearInterval(time1);
+        clearInterval(time3);
+
+        clearInterval(time2)
+        time1=setInterval(fn,10);
+        function fn(){
+            var steep;
+            if(spn.offsetLeft<=500){
+                steep=(500-spn.offsetLeft)/30;
+                steep=Math.ceil(steep);
+                spn.style.left=spn.offsetLeft+steep+"px";
+            }
+            if(spn.offsetLeft>500){
+                steep=(spn.offsetLeft-500)/30;
+                steep=Math.ceil(steep);
+                spn.style.left=spn.offsetLeft-steep+"px";
+            }
+            if(spn.offsetLeft==500){
+                clearInterval(time1)
+            }
+           console.log(steep)
+
+        }
+    };
+    inpt[1].onclick=function(){
+
+        clearInterval(time3);
+        clearInterval(time1)
+        clearInterval(time2)
+        time2=setInterval(f,10);
+        function f(){
+            var steep=(1100-spn.offsetLeft)/30;
+            steep=Math.ceil(steep);
+            spn.style.left=spn.offsetLeft+steep+"px";
+            if(spn.offsetLeft==1100){
+                clearInterval(time2)
+            }
+            console.log(steep)
+        }
+    };
+    inpt[2].onclick=function(){
+        clearInterval(time3);
+        clearInterval(time1)
+        clearInterval(time2)
+        time3=setInterval(test,10);
+        function test() {
+            var steep = (spn.offsetLeft) / 30;
+            steep = Math.ceil(steep);
+            spn.style.left = spn.offsetLeft - steep + "px";
+            if (spn.offsetLeft == 0) {
+                clearInterval(time3)
+            }
+            console.log(steep)
+        }
+    }
+
+</script>
+</body>
+</html>

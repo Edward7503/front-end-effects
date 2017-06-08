@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 500px;
+            height: 500px;
+            margin: 30px auto;
+        }
+        #ball{
+            width: 498px;
+            height: 450px;
+            border: 1px solid black;
+            position: relative;
+        }
+        #ball span{
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box">
+    <input type="button" value="回放"/>
+    <div id="ball">
+        <span></span>
+    </div>
+</div>
+<script>
+    var inp=document.getElementsByTagName("input")[0];
+    var ball=document.getElementById("ball");
+    var spn=ball.children[0];
+    var a=[20];
+    var b=[20];
+    var time;
+    spn.onmousedown=function(){
+        var event=event||window.event;
+        var x=event.clientX-spn.offsetLeft;
+        var y=event.clientY-spn.offsetLeft;
+            document.onmousemove=function(){
+            var event=event||window.event;
+            var lefts=event.clientX-x;
+            var tops=event.clientY-y;
+            var maxw=ball.clientWidth-spn.offsetWidth;
+            var maxh=ball.clientHeight-spn.offsetHeight;
+            if(lefts>=maxw){
+                lefts=maxw
+            }
+            if(lefts<=0){
+                lefts=0
+            }
+            if(tops>=maxh){
+                tops=maxh
+            }
+            if(tops<=0){
+                tops=0
+            }
+            spn.style.left=lefts+"px";
+            spn.style.top=tops+"px";
+            a.push(lefts);
+            b.push(tops);
+        }
+    };
+    document.onmouseup=function(){
+        document.onmousemove=null
+    };
+    inp.onclick=function () {
+        clearInterval(time);
+        time=setInterval(function(){
+            a.pop();
+            b.pop();
+            spn.style.left = a[a.length-1] + "px";
+            spn.style.top = b[b.length-1] + "px";
+            if (a.length <= 1 && b.length <= 1) {
+                clearInterval(time)
+            }
+        },10)
+    }
+
+
+</script>
+</body>
+</html>

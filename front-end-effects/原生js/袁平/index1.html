@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" placeholder="请输入正确的邮箱"/>
+<input type="button" value="确定"/>
+<script>
+    var inpt=document.getElementsByTagName("input");
+    inpt[1].onclick=function(){
+        var a=inpt[0].value;
+        var re=/^[1-9][0-9]{5,9}@qq\.com$/;
+        var f= a.match(re);
+        if(f!=null){
+            alert("欢迎")
+        }else{
+            alert("请输入正确的邮箱")
+        }
+    }
+</script>
+</body>
+</html>

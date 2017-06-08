@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 400px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <span>留言板</span>
+    <textarea  cols="30" rows="10" style="display: block"></textarea>
+    <div>
+        <span>你还可以输入</span>
+        <em>30</em>
+        <span>个字</span>
+    </div>
+    <p>提交留言</p>
+    <ul></ul>
+</div>
+<script>
+    var btn=document.getElementById("box").children;
+    var time;
+    btn[1].onfocus=function(){
+        clearInterval(time);
+        time=setInterval(fn,10);
+        function fn(){
+            var a=btn[1].value.length;
+            var b=30;
+            b=b-a;
+            if(b>=0){
+                btn[2].children[0].innerHTML="你还可以输入";
+                btn[2].children[1].innerHTML=b;
+                btn[2].children[1].style.color="black";
+            }else{
+                b=0-b;
+                btn[2].children[0].innerHTML="你已超出文本";
+                btn[2].children[1].innerHTML=b;
+                btn[2].children[1].style.color="red";
+            }
+        }
+    };
+    btn[1].onblur=function(){
+        clearInterval(time)
+    };
+    btn[3].onclick=function(){
+        var i=btn[1].value.length;
+        if(i!=0){
+            if(i<=30){
+                var oli=document.createElement("li");
+                btn[4].appendChild(oli);
+                var op=document.createElement("p");
+                op.innerHTML=btn[1].value;
+                oli.appendChild(op);
+                var spn=document.createElement("span");
+                spn.innerHTML="删除";
+                oli.appendChild(spn);
+                spn.onclick=function(){
+                    btn[4].removeChild(this.parentNode)
+                }
+                if(btn[4].children.length>1){
+                    btn[4].insertBefore(oli,btn[4].children[0])
+                }
+            }
+            else{
+                alert("超出文本长度")
+            }
+
+        }else{
+            alert("留言板内容为空")
+        }
+
+
+
+
+    }
+</script>
+</body>
+</html>

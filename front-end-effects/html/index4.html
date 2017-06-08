@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style: none;
+            width: 800px;
+            height: 800px;
+            border: 1px solid red;
+            font-size: 50px;
+            text-align: center;
+            line-height: 800px;
+        }
+        ol{
+            position: fixed;
+            right: 30px;
+            top:200px;
+        }
+        ol li{
+            list-style: none;
+            width: 30px;
+            height: 30px;
+            border:1px solid black;
+            text-align: center;
+            line-height: 30px;
+        }
+        .box{
+            background: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<ol>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ol>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $("ol li").each(function(i){
+        $(this).click(function(){
+            $(this).addClass("box").siblings().removeClass("box");
+            $("body").stop().animate({
+                scrollTop:$("ul>li").eq(i).offset().top
+            }) ;
+        })
+    });
+    $(window).scroll(function(){
+        $("ul>li").each(function(i){
+            if($("body").scrollTop() > $("ul>li").eq(i).offset().top-100 ){
+                $("ol>li").eq(i).addClass("box").siblings().removeClass("box");
+            }
+        });
+    })
+</script>
+</body>
+</html>

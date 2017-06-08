@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            width: 300px;
+            margin: 50px auto;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<form action="">
+    <input  type="text" style="display:block"/>
+     <input type="password" style="display: block"/>
+    <input type="checkbox" />记住密码
+    <input type="submit" value="登录" />
+    <input type="button" value="cookie"/>
+
+</form>
+<script>
+    var btn=document.getElementsByTagName("form")[0].children;
+//    var x=confirm("真的不需要购买吗");
+//    if(x==true){
+//        var y=prompt("你需要什么");
+//        if(y){
+//            window.open("http://www.vip.com")
+//        }
+//    }
+    btn[3].onclick=function(){
+        setCookie("use",btn[0].value,1);
+        setCookie("ws",btn[1].value,1);
+    };
+    btn[1].onfocus=function(){
+        var s = getCookie("use");
+        var m = getCookie("ws");
+        var va = btn[0].value;
+        if(s == va && m != undefined){
+            btn[1].value = m;
+        }
+    };
+    btn[4].onclick=function(){
+        removeCookie("ws");
+        btn[1].value="";
+    };
+    function setCookie(name,value,time){
+        var dates = new Date();
+        var myDate = dates.setTime(dates.getTime()+time*(24*60*60*1000));
+        document.cookie = name+"=" +value+";expires="+myDate;
+    }
+    function getCookie(name){
+        var b = document.cookie.split("; ");
+        var arr = [];
+        for(var i = 0;i< b.length;i++){
+            arr.push(b[i].split("="));
+            console.log(arr);
+            if(name == arr[i][0]){
+                return arr[i][1];
+            }
+        }
+    }
+    function removeCookie(name){
+        setCookie(name,'',-100);
+    }
+</script>
+</body>
+</html>

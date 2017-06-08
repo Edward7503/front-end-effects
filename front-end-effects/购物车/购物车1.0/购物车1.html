@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container" ng-app="myApp" ng-controller="cartController">
+    <table class="table"  ng-show="myVar1">
+        <thead>
+        <tr>
+            <th>英雄编号</th>
+            <th>英雄名字</th>
+            <th>英雄数量</th>
+            <th>英雄单价</th>
+            <th>英雄总价</th>
+            <th>移除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in cart">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>
+                <button class="btn btn-default" ng-click="added(item.id)">+</button>
+                <input type="number"  value="{{item.num}}" ng-model="item.num"/>
+               <button class="btn btn-default" ng-click="dec(item.id)">-</button>
+            </td>
+            <td>{{item.price}}</td>
+            <td>{{item.price*item.num}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="remove(item.id)">移除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>产品总价</td>
+            <td>{{prices()}}</td>
+            <td>产品数量</td>
+            <td>{{num()}}</td>
+            <td colspan="2">
+                <button class="btn btn-danger" ng-click="hidden()">清空购物清单</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p ng-show="myVar">你的购物车为空</p>
+</div>
+<script src="../js/angularjs.js"></script>
+<script src="index1.js"></script>
+
+</body>
+</html>

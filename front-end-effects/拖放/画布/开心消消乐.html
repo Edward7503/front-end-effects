@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 600px;
+            height: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <canvas width="600" height="600" style="background:#ccc" id="canvas">你太low了</canvas>
+</div>
+<script>
+    var canvas=document.getElementById("canvas");
+    var cxt=canvas.getContext("2d");
+    var a, b, c,d,num=16;
+    var arrColor=[];
+    var color="";
+    var color1="";
+    var rgb1="";
+    var x,y;
+    var imgData, r, g,B;
+    var box;
+    var NUM;
+    function fn(){
+//        随机生成颜色
+        NUM=num;
+        for(var i=0;i<num/2;i++){
+            a=Math.ceil(Math.random()*256);
+            b=Math.ceil(Math.random()*256);
+            c=Math.ceil(Math.random()*256);
+            color="rgb("+a+","+b+","+c+")";
+            for(var j=0;j<2;j++){
+                arrColor.push(color)
+            }
+        }
+        for(var i=0;i<Math.sqrt(num);i++){
+            for(var j=0;j<Math.sqrt(num);j++){
+                d=Math.floor(Math.random()*arrColor.length);
+                cxt.beginPath();
+                cxt.fillStyle=arrColor[d];
+                arrColor.splice(d,1);
+                cxt.fillRect(i*(480/Math.sqrt(num)+10)+20,j*(480/Math.sqrt(num)+10)+20,480/Math.sqrt(num),480/Math.sqrt(num));
+                cxt.closePath();
+            }
+        }
+    }
+    canvas.onclick=function Test(e){
+        var x1=e.clientX - canvas.offsetLeft;
+        var y1=e.clientY -canvas.offsetTop;
+        imgData=cxt.getImageData(x1,y1,1,1);
+        r=imgData.data[0];
+        g=imgData.data[1];
+        B=imgData.data[2];
+        var rgb="rgb("+r+","+g+","+B+")";
+        for(var i=0;i<Math.sqrt(num);i++){
+            for(var j=0;j<Math.sqrt(num);j++){
+                box=cxt.getImageData(i*(480/Math.sqrt(num)+10)+20,j*(480/Math.sqrt(num)+10)+20,480/Math.sqrt(num),480/Math.sqrt(num)).data;
+                rgb1="rgb("+box[0]+","+box[1]+","+box[2]+")";
+                if(rgb==rgb1 && rgb==color1 && x1!=x && y1!=y){
+                    cxt.clearRect(i*(480/Math.sqrt(num)+10)+20,j*(480/Math.sqrt(num)+10)+20,480/Math.sqrt(num),480/Math.sqrt(num));
+                    NUM--;
+                    if(NUM==0){
+                        num=2*num;
+                        fn();
+                    }
+                }
+            }
+        }
+        color1="rgb("+r+","+g+","+B+")";
+        x= e.clientX - canvas.offsetLeft;
+        y= e.clientY -canvas.offsetTop;
+        console.log(imgData.data)
+    };
+    fn(num)
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 450px;
+            height: 500px;
+            margin: 100px auto;
+            border:1px solid black;
+        }
+        ul{
+            width: 450px;
+            height: 50px;
+        }
+        ul li{
+            float: left;
+            width: 150px;
+            height: 30px;
+            list-style: none;
+            text-align: center;
+            line-height: 30px;
+            background: grey;
+        }
+        ol{
+            position: relative;
+        }
+        ol li{
+           display: none;
+            list-style: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 450px;
+            height: 450px;
+            font-size: 50px;
+            text-align: center;
+            line-height: 450px;
+        }
+        .box{
+            background: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul>
+        <li class="box">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ol>
+        <li style="display: block">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ol>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  $("ul li").each(function(i){
+      $(this).on("click",function(){
+              $(this).addClass("box").siblings().removeClass("box");
+              $("ol>li").eq(i).show().siblings().hide();
+      })
+  });
+
+</script>
+</body>
+</html>

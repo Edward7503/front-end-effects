@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span{
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+<input type="text"/>
+<span></span>
+<input type="button" value="验证"/>
+<script>
+    var inpt=document.getElementsByTagName("input");
+    var spn=document.getElementsByTagName("span")[0];
+    var arr1=['a','q','w','e','r','t','y','u','i','o','p','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m',
+               '1','2','3','4','5','6','7','8','9','0',
+        'A','Q','W','E','R','T','Y','U','I','O','P','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'];
+    window.onload=function(){
+        var a=Math.floor(Math.random()*arr1.length);
+        var b=Math.floor(Math.random()*arr1.length);
+        var d=Math.floor(Math.random()*arr1.length);
+        var c=Math.floor(Math.random()*arr1.length);
+        spn.innerHTML=arr1[a]+arr1[b]+arr1[c]+arr1[d];
+        var f=spn.innerText;
+        inpt[1].onclick=function(){
+            var a=Math.floor(Math.random()*arr1.length);
+            var b=Math.floor(Math.random()*arr1.length);
+            var d=Math.floor(Math.random()*arr1.length);
+            var c=Math.floor(Math.random()*arr1.length);
+            spn.innerHTML=arr1[a]+arr1[b]+arr1[c]+arr1[d];
+            var f2=inpt[0].value;
+            if(f.toUpperCase()==f2.toUpperCase())
+            {
+                alert("欢迎");
+
+            }else{
+                alert("请重新输入的验证码")
+            }
+        }
+    }
+
+
+</script>
+</body>
+</html>

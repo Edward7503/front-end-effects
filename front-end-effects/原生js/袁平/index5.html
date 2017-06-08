@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 400px;
+            height: 300px;
+            margin: 50px auto;
+            background: gray;
+            text-align: center;
+            overflow: hidden;
+        }
+        span{
+            display: block;
+            font-size: 40px;
+            color: #b51e25;
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+        input{
+            width: 50px;
+            height: 30px;
+            background: red;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>奔跑吧皮皮虾</span>
+    <input type="button" value="点名"/>
+    <script>
+        var spn=document.getElementsByTagName("span")[0];
+        inpt=document.getElementsByTagName("input")[0];
+        var arr=["奔跑吧皮皮虾","张三","李四","王二","麻子","undefined"];
+        var time;
+        var flag=true;
+        var num=null;
+        inpt.onclick=function(){
+            if(flag==true){
+                clearInterval(time);
+                time=setInterval(fn,10);
+                function fn(){
+                    num=Math.ceil(Math.random()*arr.length);
+                    spn.innerHTML=arr[num]
+                }
+                inpt.value="停止"
+            }else{
+                clearInterval(time);
+                inpt.value="点名"
+            }
+            flag=!flag
+
+        }
+    </script>
+</div>
+</body>
+</html>

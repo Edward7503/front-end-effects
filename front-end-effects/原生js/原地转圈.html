@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 1000px;
+            height: 1000px;
+            margin: 50px auto;
+            border: 1px solid black;
+            position: relative;
+        }
+        span{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            background: red;
+            position: absolute;
+            margin-top: 500px;
+            margin-left: 500px;
+        }
+        div{
+            width: 5px;
+            height: 5px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span></span>
+</div>
+<script>
+    var spn=document.getElementsByTagName("span")[0];
+    var i=1;
+    setInterval(function(){
+        i++;
+        var box=document.createElement("div");
+        document.body.appendChild(box);
+        var y=Math.sin(i*Math.PI/180)*200;
+        var x=Math.cos(i*Math.PI/180)*200;
+        spn.style.left=x+"px";
+        spn.style.top=y+"px";
+        box.style.left=spn.offsetLeft+"px";
+        box.style.top=spn.offsetTop+"px";
+    },10)
+</script>
+</body>
+</html>

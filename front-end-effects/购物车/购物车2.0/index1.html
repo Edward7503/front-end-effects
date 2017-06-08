@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container box" ng-app="myApp" ng-controller="cartController">
+    <input type="text" placeholder="输入你想要的产品信息" ng-model="test.id" class="form-control"/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th ng-class="{dropup:order===''}">
+                英雄编号
+                <span class="caret" ng-click="sort('id')"></span>
+            </th>
+            <th  ng-class="{dropup:order===''}">英雄名字<span class="caret" ng-click="sort('name')"></span></th>
+            <th  ng-class="{dropup:order===''}">英雄单价<span class="caret" ng-click="sort('price')"></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in cart|orderBy:myVar|filter:test">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price|currency:"(RMB)"}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="http://apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular.min.js"></script>
+<script src="index1.js"></script>
+</body>
+</html>
