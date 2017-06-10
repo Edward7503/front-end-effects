@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>学生成绩添加</title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+        p{
+            font: italic bold 15px 'Microsoft YaHei';
+        }
+        [type=number]{
+            width: 80px;
+            display: inline-block;
+        }
+        .container{
+            margin-top: 30px;;
+        }
+    </style>
+</head>
+<body>
+<div class="container" ng-app="studentScope" ng-controller="studentScopeController">
+    <table class="table row table-bordered">
+        <thead>
+            <tr class="active">
+                <!--<th class="col-md-1 text-center">学号</th>-->
+                <th class="col-md-1 text-center">名字</th>
+                <th class="col-md-1 text-center">年龄</th>
+                <th class="col-md-1 text-center">班级</th>
+                <th class="col-md-2 text-center">语文</th>
+                <th class="col-md-2 text-center">数学</th>
+                <th class="col-md-2 text-center">英语</th>
+                <th class="col-md-1 text-center">个人平均分</th>
+                <th class="col-md-1 text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="person in persons" class="text-center">
+            <!--<td>{{person.id}}</td>-->
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.class}}</td>
+            <td>
+                <button ng-click="reduceScope(person.id,'Chinese')" class="btn btn-sm">-</button>
+                <input class="form-control" type="number" value="{{person.Chinese}}" ng-model="person.Chinese"/>
+                <button ng-click="addScope(person.id,'Chinese')" class="btn btn-sm">+</button>
+            </td>
+            <td>
+                <button ng-click="reduceScope(person.id,'Math')" class="btn btn-sm">-</button>
+                <input class="form-control" type="number" value="{{person.Math}}" ng-model="person.Math"/>
+                <button ng-click="addScope(person.id,'Math')" class="btn btn-sm">+</button>
+            </td>
+            <td>
+                <button ng-click="reduceScope(person.id,'English')" class="btn">-</button>
+                <input class="form-control" type="number" value="{{person.English}}" ng-model="person.English"/>
+                <button ng-click="addScope(person.id,'English')" class="btn btn-sm">+</button>
+            </td>
+            <td>{{((person.Math+person.Chinese+person.English)/3).toFixed(2)}}</td>
+            <td class="col-md-2">
+                <a ng-click="remove(person.id)" class="btn btn-danger btn-sm" href="javascript:;">删除</a>
+                <button data-toggle="modal" data-target="#myModal"  ng-click='editeData(person.id)' class="btn btn-primary btn-sm">编辑</button>
+            </td>
+        </tr>
+            <tr>
+                <td colspan="3">科目平均分</td>
+                <td>{{subAvg('Chinese')}}</td>
+                <td>{{subAvg('Math')}}</td>
+                <td>{{subAvg('English')}}</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="3">总平均分</td>
+                <td colspan="5">{{allScope()}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+        添加
+    </button>
+
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" ng-init="modalTitle='添加成绩'">{{modalTitle}}</h4>
+                </div>
+                <div class="modal-body">
+
+
+
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="studentname" class="col-sm-2 control-label">名字</label>
+                            <div class="col-sm-10">
+                                <input id="studentname" class="form-control" ng-model="name" value="{{name}}" type="text" placeholder="名字"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentage" class="col-sm-2 control-label">年龄</label>
+                            <div class="col-sm-10">
+                                <input id="studentage" class="form-control" ng-model="age" value="{{age}}" type="text" placeholder="年龄"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentclass" class="col-sm-2 control-label">班级</label>
+                            <div class="col-sm-10">
+                                <input id="studentclass" class="form-control" ng-model="class" value="{{class}}" type="text" placeholder="班级"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Chinese" class="col-sm-2 control-label">语文</label>
+                            <div class="col-sm-10">
+                                <input id="Chinese" class="form-control" ng-model="Chinese" value="{{Chinese}}" type="text" placeholder="语文"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Math" class="col-sm-2 control-label">数学</label>
+                            <div class="col-sm-10">
+                                <input id="Math" class="form-control" ng-model="Math" value="{{Math}}" type="text" placeholder="数学"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Englist" class="col-sm-2 control-label">英语</label>
+                            <div class="col-sm-10">
+                                <input id="Englist" class="form-control" ng-model="English" value="{{English}}" type="text" placeholder="英语"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <td colspan="9"><button ng-click="addInfo()" class="btn col-md-offset-3" data-dismiss="modal">添加</button></td>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="index.js"></script>
+<script>
+//    $('#myModal').modal({
+//        backdrop:'static'
+//    });
+</script>
+</body>
+</html>

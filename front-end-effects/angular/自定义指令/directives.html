@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" ng-app="myApp" ng-controller="appController">
+    <p>what your name?</p>
+    <input focus type="text" ng-model="user.name"/>
+    <input type="button" ng-click="greet()" value="click"/>
+    <p>hello {{user.name}}</p>
+
+    <ul>
+        <li ng-repeat="person in persons">
+            {{person.name}} form {{person.country}}
+            <a remove href="javascript:;">delete</a>
+        </li>
+    </ul>
+</div>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="directive.js"></script>
+</body>
+</html>

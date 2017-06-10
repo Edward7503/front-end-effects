@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input id="ipt" type="text"/>
+<input id="btn" type="button" value="test"/>
+<script>
+    var ipt = document.getElementById("ipt");
+    var btn = document.getElementById("btn");
+
+    btn.onclick = function(){
+        var str = ipt.value;
+        var arr = str.split('');
+
+//        console.log(str.lastIndexOf(arr.pop()));
+        console.log(arr.push('1')-1);
+    }
+</script>
+</body>
+</html>

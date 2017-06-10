@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            color: #aa00ff;
+        }
+        #demo{
+            color: #c00;
+        }
+    </style>
+</head>
+<body>
+<p id="demo">id="demo"</p>
+<p>dfdfsdf</p>
+<p id="demo">id="demo"</p>
+<p>class="demo"</p>
+
+<!--<input type="button" value="new1" onclick="window.open('http://www.baidu.com','_blank')"/>-->
+<!--<input type="button" value="new2" onclick="window.location('http://www.baidu.com','_blank')"/>-->
+<!--<input type="button" value="new3" onclick="window.assign('http://www.baidu.com','_blank')"/>-->
+<!--<form target="_blank" action="http://www.baidu.com"><input type="submit" value="new4"/></form>-->
+
+<!--<TEXTAREA></TEXTAREA>-->
+<!--<INPUT type="text"/>-->
+<!--<INPUT type="hidden"/>-->
+<!--<DIV></DIV>-->
+<script>
+    var demo = document.getElementById("demo");
+    console.log(demo);
+//    function New(aClass,aParams){
+//        function new_(){
+//            aClass.Create.apply(this,aParams);
+//        }
+//        new_.prototype = aClass;
+//        return new new_();
+//    }
+//
+//    var person = {
+//        Create: function(name,age){
+//            this.name = name;
+//            this.age = age;
+//        },
+//        sayHello:function(){
+//            alert("Hello, I'm "+ this.name);
+//        },
+//        howOld:function(){
+//            alert(this.name + " is " + this.age + " years old");
+//        }
+//    };
+//
+//    var billGates = New(person,['Bill Gates',53]);
+//    billGates.sayHello();
+//    billGates.howOld();
+//    alert(billGates.constructor == person);
+
+//        function employee(name,job,born)
+//        {
+//            this.name=name;
+//            this.job=job;
+//            this.born=born;
+//        }
+//
+//var bill=new employee("Bill Gates","Engineer",1985);
+//
+//document.write(bill.constructor == employee);
+
+
+//    function func(){
+//        this.__proto__ = '10';
+//        this.sayProto = function(){
+//            console.log(this.__proto__);
+//        }
+//    }
+//    func.call(func);
+//    func.sayProto();
+
+//    function Person(name){
+//        this.name = name;
+//        this.sayHello = function(){
+//            alert("Hello, I'm "+ this.name);
+//        };
+//    }
+//    Person.prototype.sayHello = function(){
+//        alert("Hello, I'm "+ this.name);
+//    };
+
+//    var zhangSan = new Person('zhangSan');
+//    var liSi = new Person('zhangSan');
+//
+//    zhangSan.sayHello();
+//    liSi.sayHello();
+//    alert(zhangSan.sayHello == liSi.sayHello);
+
+//    function func() {
+//        console.log("I'm "+ this.name +" of "+ typeof (this));
+//    }
+//    func.call(func);
+//    func();
+
+
+//    function global(){
+//        alert(i)
+//    }
+//(function(){
+//    var a = null;
+//    alert(typeof (a));
+//})();
+//    str;
+//    str = new String();
+//    str = 'Hello';
+//    new String('hello');
+//    console.log(typeof(str))
+//var person = [
+//    {
+//    'name':'张三',
+//    'sex':'男',
+//    'Age':20
+//    },{
+//        'name':'李四',
+//        'sex':'女',
+//        'Age':22
+//    }
+//];
+//
+//    var x = 10;
+//    function a(val){
+//        val.call(this,this.x);
+//    }
+//
+//    var obj = {
+//        test:a,
+//        say:function x(){
+//            alert('this:'+this+', this.x'+this.x);
+//        },
+//        x:100
+//    };
+//
+//    a();
+//a.apply(obj,obj.say());
+
+
+//    alert(typeof  typeof Number)
+//var obj = ;
+//    var obj = ();
+//    var obj = {};
+//    var obj = [];
+//    var obj = //;
+
+//    var obj = {};
+//    alert(obj instanceof Object)
+//    alert(null instanceof Object)
+//    alert(null === undefined)
+//    alert(null == undefined)
+//    alert(NaN == NaN)
+//
+//    var foo = {
+//        att : 'hello'
+//    }
+//
+//    console.log(foo.att);
+//    console.log(foo['att']);
+//    console.log(foo('att'));
+//    console.log(foo{'att'});
+//    console.log(foo['a'+'t'+'t']);
+</script>
+</body>
+</html>
