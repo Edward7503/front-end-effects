@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <style>
+        .bg-color{
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="container">
+        <form class="form-horizontal bg-color">
+            <div class="form-group">
+                <label for="code" class="col-sm-2 control-label">id</label>
+                <div class="col-sm-3">
+                    <input v-model="stuCode" value="{{stuCode}}" type="text" class="form-control" id="code" placeholder="id">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">名字</label>
+                <div class="col-sm-3">
+                    <input v-model="stuName" value="{{stuName}}" type="text" class="form-control" id="name" placeholder="名字">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="age" class="col-sm-2 control-label">年龄</label>
+                <div class="col-sm-3">
+                    <input v-model="stuAge" value="{{stuAge}}" type="text" class="form-control" id="age" placeholder="年龄">
+                </div>
+            </div>
+            <input @click="add" type="button" class="btn btn-primary col-md-offset-3" value="添加"/>
+        </form>
+
+        <table class="table table-hover bg-color">
+            <thead>
+                <tr>
+                    <th class="col-md-1 text-center">ID</th>
+                    <th class="col-md-1 text-center">姓名</th>
+                    <th class="col-md-1 text-center">年龄</th>
+                    <th class="col-md-1 text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) of items">
+                    <td class="col-md-1 text-center">{{item.id}}</td>
+                    <td class="col-md-2 text-center">{{item.name}}</td>
+                    <td class="col-md-3 text-center">{{item.age}}</td>
+                    <td class="col-md-3 text-center">
+                        <a @click="remove(item.id)" href="javascript:;" class="btn btn-danger btn-sm">删除</a>
+                        <button @click="edit(item.id)" type="button" class="btn btn-primary btn-sm col-md-offset-1" data-toggle="modal" data-target="#editBtn">
+                            编辑
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="editBtn" backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">编辑信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal bg-color">
+                            <div class="form-group">
+                                <label for="editCode" class="col-sm-2 control-label">id</label>
+                                <div class="col-sm-3">
+                                    <input v-model="editCode" value="{{editCode}}" type="text" class="form-control" id="editCode" placeholder="id">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editName" class="col-sm-2 control-label">名字</label>
+                                <div class="col-sm-3">
+                                    <input v-model="editName" value="{{editName}}" type="text" class="form-control" id="editName" placeholder="名字">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editAge" class="col-sm-2 control-label">年龄</label>
+                                <div class="col-sm-3">
+                                    <input v-model="editAge" value="{{editAge}}" type="text" class="form-control" id="editAge" placeholder="年龄">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <input @click="addEdit" data-dismiss="modal" type="button" class="btn btn-primary col-md-offset-3" value="添加"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="libs/vue.js"></script>
+    <script>
+        var studentData = [
+            {
+                'id':1,
+                'name':"袁总1",
+                'age':18
+            },{
+                'id':2,
+                'name':"袁总2",
+                'age':18
+            },{
+                'id':3,
+                'name':"袁总3",
+                'age':18
+            }
+        ];
+        var vm = new Vue({
+            el : '#box',
+            data : {
+                items:studentData,
+                stuCode:"",
+                stuName:"",
+                stuAge:"",
+                editCode:'',
+                editName:'',
+                editAge:'',
+                eId:0,
+                add : function(){
+                    this.studentData.push({
+                        'id' : vm.stuCode,
+                        'name' : vm.stuName,
+                        'age' : vm.stuAge
+                    })
+                },
+                getIndex : function(id){
+                    var index = -1;
+                    for(var i=0; i<studentData.length; i++){
+                        if(id == studentData[i].id){
+                            index = i;
+                        }
+                    }
+                    return index;
+                },
+                remove : function(id){
+                    var index = this.getIndex(id);
+                    if(index != -1){
+                        studentData.splice(index,1);
+                    }
+                },
+                edit : function(id){
+                    var index = this.getIndex(id);
+                    vm.eId = index;
+                    console.log(vm.eId);
+
+                    if(index != -1){
+                        this.editCode=studentData[index].id;
+                        this.editName=studentData[index].name;
+                        this.editAge=studentData[index].age;
+                    }
+                },
+                addEdit:function(){
+                    console.log(vm.eId);
+                    var index = vm.getIndex(vm.eId);
+                    var obj = {
+                        'id' : vm.editCode,
+                        'name' : vm.editName,
+                        'age' : vm.editAge
+                    };
+                    if(index != -1){
+                        studentData.splice(index+1,1,obj);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

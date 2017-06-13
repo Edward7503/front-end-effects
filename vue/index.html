@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<div id="app">-->
+    <!--<input type="text" v-model="app"/>-->
+    <!--<p>{{app}}</p>-->
+<!--</div>-->
+
+<!--<div class="app2">-->
+    <!--<input type="text" v-model="msg1"/>-->
+    <!--<p>{{msg1}}</p>-->
+
+    <!--<input type="text" v-model="msg2"/>-->
+    <!--<p>{{msg2}}</p>-->
+<!--</div>-->
+
+<!--<div class="app2">-->
+    <!--<input type="text" v-model="msg2"/>-->
+    <!--<p>{{msg2}}</p>-->
+<!--</div>-->
+
+<div id="box">
+    <!--<p v-model="msg" :style="red">{{msg}}</p>-->
+    <ul>
+        <li v-for="(item,index) of items">{{index}}---{{item.message}}</li>
+    </ul>
+</div>
+
+<script src="libs/vue.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+//    var vm = new Vue({
+//        el:"#box",
+//        data:{
+//            items:[
+//                {message:"item01"},
+//                {message:"item02"}
+//            ]
+//        }
+//    });
+//    var vm = new Vue({
+//        el:"#box",
+//        data:{
+//            msg:"v-bind",
+//            red:"color: red"
+//        }
+//    })
+
+//    $(function(){
+//        var app = $("#app").get(0);
+//
+//        new Vue({
+//            el:app,
+//            data:{
+//                app:"my app"
+//            }
+//        })
+//    })()
+
+//    var msg = $(".app2")[0];
+//    new Vue({
+//        el:msg,
+//        data:{
+//            msg1:'hello world'
+//        }
+//    })
+
+
+</script>
+</body>
+</html>
