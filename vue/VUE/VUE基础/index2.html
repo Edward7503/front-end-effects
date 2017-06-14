@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>index2</title>
+    <script src="../library/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <p>{{message}}</p>
+    <input v-model="message"/>
+</div>
+<input type="button" value="改变" onclick="c()"/>
+<!--<div><p>{{message}}</p></div>-->
+<script>
+    shuju={message:'你好吗？'};
+    var vm=new Vue({
+        el:'#box',
+        data:shuju
+    })
+function c(){
+    vm.message="我已经改变了"
+}
+</script>
+</body>
+</html>

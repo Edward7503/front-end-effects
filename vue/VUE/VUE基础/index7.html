@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <script src="../library/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{text}}</p>
+        <p :style="red">{{text}}</p>
+    </div>
+    <script>
+        var ve = new Vue({
+            el : "#box",
+            data:{
+                text :"我是text",
+                red :"color:red"
+            }
+        });
+    </script>
+</body>
+</html>

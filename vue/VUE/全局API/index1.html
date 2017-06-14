@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="../library/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <input v-xiaohua:val.red.border="num"/>
+    <button @click="gx">更新</button>
+</div>
+<script>
+    Vue.directive('xiaohua',{
+        bind:function(value){
+            this.el.style.color='#ff6600';
+//            this.el.value='222';
+        },
+        update:function(newValue,oldValue){
+//            console.log(this.name);
+//            console.log(this.expression);
+//            console.log(this.arg);
+//            console.log(this.modifiers);
+            var jsonObj=this.modifiers;
+//            console.log(jsonObj.red);
+            this.el.value='11111';
+            console.log('我被更新了')
+        },
+        unbind:function(){
+
+        }
+    });
+    new Vue({
+        el:'#box',
+        data:{
+            num:'1'
+        },
+        methods:{
+            gx:function(){
+                this.num++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

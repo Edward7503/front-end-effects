@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="../library/vue.js"></script>
+</head>
+<body>
+<ul id="box">
+    <li v-for="sss of items">
+        {{sss.message}}
+    </li>
+</ul>
+<script>
+    var vm=new Vue({
+        el:'#box',
+        data:{
+            items:[
+                {message:'one'},
+                {message:'two'}
+            ]
+        }
+    })
+    vm.items.push({message:'three'});
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+    <script src="../library/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <p>{{message}}</p>
+    <input v-model="message" debounce="500"/>
+    <!--{{message}}{{message|pluralize 'st''nd''rd''th'}}-->
+</div>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            message:5
+        }
+    })
+    //pluralize:返回数组中结构的一部分
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="../library/vue.js">
+    </script>
+</head>
+<body>
+<div id="box">
+    <p>{{num}}</p>
+    <p v-if="num>1.5">大于1.5</p>
+    <p v-else>小于1.5</p>
+</div>
+<script>
+    var vm=new Vue({
+        el:'#box',
+        data:{
+            num:Math.random()+1
+        }
+    })
+</script>
+</body>
+</html>

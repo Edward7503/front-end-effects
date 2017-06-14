@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>vue.partial</title>
+    <script src="../library/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <partial v-bind:name="dongtaimoban"></partial>
+
+</div>
+<script>
+    Vue.partial('div1','<p>zheshidiv1</p>');
+    Vue.partial('div2','<p>zheshidiv2</p>');
+    Vue.partial('div3','<p>zheshidiv3</p>');
+    new Vue({
+        el:'#box',
+        data:{
+            message:'你好',
+            dongtaimoban:'div3'
+        }
+    })
+</script>
+</body>
+</html>
